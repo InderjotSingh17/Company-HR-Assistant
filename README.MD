@@ -134,17 +134,31 @@ Company-HR-MCP-Server/
 
 ## 📚 Learning Outcomes
 
-Through this project, I explored and implemented:
+This project applies the following MCP and n8n concepts through a working HR automation application.
 
-- Building an MCP server using Python.
-- Connecting an MCP client with Google Gemini.
-- Exposing tools, resources, and prompts through MCP.
-- Implementing human-in-the-loop approval.
-- Validating tool arguments before execution.
-- Integrating Python applications with n8n using HTTP webhooks.
-- Building conditional automation workflows in n8n.
-- Testing webhook communication independently.
-- Managing application configuration using environment variables.
+MCP Implementation
+
+- **MCP Server:** Built a Python-based MCP server exposing HR functionality.
+- **Tools:** Implemented `get_employee_details`, `calculate_leave_balance`, and `create_leave_request`.
+- **Resources:** Exposed HR leave policies through an MCP resource.
+- **Prompts:** Implemented a reusable leave eligibility explanation prompt.
+- **MCP Client:** Established communication between the Python client and MCP server using STDIO transport.
+- **LLM Tool Calling:** Integrated Google Gemini to identify and execute relevant MCP tools.
+- **Human-in-the-Loop:** Implemented explicit user confirmation before executing leave-request creation.
+- **Input Validation:** Added client-side validation for tool arguments, dates, and leave reasons.
+- **Tool Result Handling:** Extracted MCP tool responses and handled execution errors.
+- **MCP-to-Workflow Integration:** Forwarded successful MCP tool results to n8n through HTTP requests.
+
+n8n Implementation
+
+- **Webhook Trigger:** Created HTTP webhook endpoints to receive data from Python applications.
+- **HTTP Request Integration:** Sent JSON payloads from Python to n8n using POST requests.
+- **Data Mapping:** Used the Edit Fields node to extract and map incoming employee and leave-request fields.
+- **Conditional Logic:** Configured the IF node with multiple AND conditions to validate incoming requests.
+- **Workflow Branching:** Routed valid and invalid requests through separate execution paths.
+- **Email Automation:** Integrated the Send Email node into the successful execution branch.
+- **Webhook Responses:** Used Respond to Webhook nodes to return HTTP 200 for successful processing and HTTP 400 for validation failures.
+- **Workflow Testing:** Tested webhook execution using both test and production webhook configurations as applicable.
 
 ## 🔮 Future Improvements
 
